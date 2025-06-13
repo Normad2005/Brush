@@ -11,37 +11,35 @@ struct TreeNode {
     TreeNode() : val(0), left(nullptr), right(nullptr) {}
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- };
+};
  
 class Solution {
 public:
     vector<vector<int>> levelOrderBottom(TreeNode* root) {
-        vector<vector<int> > v;
-        vector<vector<int> > rev;
+        vector<vector<int>> v;
+        vector<vector<int>> rev;
 
-        if(!root) return v;
+        if (!root) return v;
 
-        queue<TreeNode *> q;
+        queue<TreeNode*> q;
         q.push(root);
-        
-        
-        while(!q.empty()){
-            int levelsize = q.size();
-            vector<int > level;
-            for(int i=0;i<levelsize;i++){
-                TreeNode *node = q.front();
-                q.pop();
-                if(node->left) q.push(node->left);
-                if(node->right) q.push(node->right);
 
+        while (!q.empty()) {
+            int levelsize = q.size();
+            vector<int> level;
+            for (int i = 0; i < levelsize; i++) {
+                TreeNode* node = q.front();
+                q.pop();
+                if (node->left) q.push(node->left);
+                if (node->right) q.push(node->right);
                 level.push_back(node->val);
             }
             v.push_back(level);
         }
-        
-        for(int i = v.size()-1; i >= 0; i--)
-                rev.push_back(v[i]);
-            
+
+        for (int i = v.size() - 1; i >= 0; i--)
+            rev.push_back(v[i]);
+
         return rev;
     }
 };
