@@ -6,20 +6,21 @@ using namespace std;
 class Solution {
 public:
     vector<string> res;
-
-    void Geng(int left, int right, string cur){
-        if(right == left){
+    void geng(int left, int right, int n, string cur){
+        if(cur.length() == 2*n){
             res.push_back(cur);
             return;
         }
-        if(right > left)
-            return;
-        Geng(left + 1, right, cur + "(");
-        Geng(left, right+1, cur + ")");
+        if(left < n)
+            geng(left + 1, right, n, cur + '(');
+        if(left > right)
+            geng(left, right + 1, n, cur + ')');
+
     }
+    
 
     vector<string> generateParenthesis(int n) {
-        Geng(0, 0, "");
-        return res
+        geng(0, 0, n, "");
+        return res;
     }
 };

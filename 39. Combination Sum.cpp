@@ -14,7 +14,7 @@ public:
             return;
         }
         for(int i = init ; i < candidates.size() ; i++){
-            cur.push_back(i);
+            cur.push_back(candidates[i]);
             dfs(candidates, target, cur, num + candidates[i], i);
             cur.pop_back();
         }
